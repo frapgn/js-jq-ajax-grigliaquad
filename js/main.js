@@ -4,14 +4,14 @@ for (var i = 0; i < 36; i++) {
     $('.container').append(boxTempl);
 }
 
-$('.container').on('click', '.box', function(){
+$('.container').on('click', '.box', function() {
     var that = $(this);
 
     $.ajax({
         url: 'https://flynn.boolean.careers/exercises/api/random/int',
         method: 'GET',
-        success: function(randNum){
-            if( ($(that).text()) == ''){
+        success: function(randNum) {
+            if(($(that).text()) == '') {
                 var randomNumber = randNum.response;
                 $(that).text(randomNumber);
                 if (randomNumber <= 5) {
@@ -24,5 +24,5 @@ $('.container').on('click', '.box', function(){
         error: function(){
             console.log('Errore!');
         }
-    })
-})
+    });
+});
