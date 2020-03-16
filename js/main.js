@@ -11,12 +11,14 @@ $('.container').on('click', '.box', function(){
         url: 'https://flynn.boolean.careers/exercises/api/random/int',
         method: 'GET',
         success: function(randNum){
-            var randomNum = randNum.response;
-            $(that).text(randomNum);
-            if (randomNum <= 5) {
-                $(that).addClass('bg-lgreen');
-            } else {
-                $(that).addClass('bg-lblue');
+            if( ($(that).text()) == ''){
+                var randomNumber = randNum.response;
+                $(that).text(randomNumber);
+                if (randomNumber <= 5) {
+                    $(that).addClass('bg-lgreen');
+                } else {
+                    $(that).addClass('bg-lblue');
+                }
             }
         },
         error: function(){
