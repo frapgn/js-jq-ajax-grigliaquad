@@ -1,4 +1,8 @@
-
+var boxTemplSrc = $('#box-template').html();
+var boxTempl = Handlebars.compile(boxTemplSrc);
+for (var i = 0; i < 36; i++) {
+    $('.container').append(boxTempl);
+}
 
 $('.container').on('click', '.box', function(){
     var that = $(this);
