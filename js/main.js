@@ -6,23 +6,32 @@ for (var i = 0; i < 36; i++) {
 
 $('.container').on('click', '.box', function() {
     var that = $(this);
-
-    $.ajax({
-        url: 'https://flynn.boolean.careers/exercises/api/random/int',
-        method: 'GET',
-        success: function(randNum) {
-            if(($(that).text()) == '') {
-                var randomNumber = randNum.response;
-                $(that).text(randomNumber);
-                if (randomNumber <= 5) {
-                    $(that).addClass('bg-lgreen');
-                } else {
-                    $(that).addClass('bg-lblue');
-                }
+    if(($(that).text()) == '') {
+        $.ajax({
+            url: 'https://flynn.boolean.careers/exercises/api/random/int',
+            method: 'GET',
+            success: function(res) { // res sta per response
+                var randomNumber = res.response;
+                squareColor(randomNumber, that);
+                squareNumber(randomNumber, that);
+            },
+            error: function(){
+                console.log('Errore!');
             }
-        },
-        error: function(){
-            console.log('Errore!');
-        }
-    });
+        });
+    } else {
+        console.log('Hai già cliccato questo quadratino');
+    }
 });
+
+function squareColor(value, clickedElement) {
+        if (value <= 5) {
+            $(clickedElement).addClass('bg-lgreen');
+        } else {
+            $(clickedElement).addClass('bg-lblue');
+        }
+}
+
+function squareNumber(value, clickedElement) {
+    $(clickedElement).text(value);
+}
